@@ -1,0 +1,73 @@
+﻿#Rewards point calculator based on customer transactions
+
+Problem:
+A retailer offers a rewards program to its customers awarding points based on each recorded.
+purchase as follows:
+For every dollar spent over $50 on the transaction, the customer receives one point.
+In addition, for every dollar spent over $100, the customer receives another point.
+Ex: for a $120 purchase, the customer receives
+(120 - 50) x 1 + (120 - 100) x 1 = 90 points
+
+#The rest API to get rewards based on customer Id
+
+The package name is structured as com.retail.rewards
+GroupId is "com.charter"
+ArtifactId is "retail"
+
+Code Explanation:
+Validates the input customerId, checking if it's empty or null. If so, it returns a BAD_REQUEST response with an error message.
+
+Attempts to retrieve customer information based on the customerId using a customerRepository. If the customer is not found, it returns an OK response with an error message.
+
+Calculates customer rewards using a rewardsService if the customer is found.
+
+Handles exceptions, logging any errors that occur, and returning an INTERNAL_SERVER_ERROR response with an error message.
+
+/**
+*Logging is used throughout the code for debugging and error reporting.
+*/
+This code assumes that there are specific error codes and constants (e.g., RetailConstants.missingId, RetailConstants.customerNotFound, RetailConstants.internalServerError) used for error handling.
+
+calculateCustomerRewards(String customerId)
+This method calculates the total rewards for a customer over the last three months based on their transactions.
+It retrieves transaction data for the last three months and calculates rewards for each month.
+The total rewards earned are returned in a RetailRewards object.
+Error handling is included for potential exceptions during transaction retrieval.
+calculateRewardsPerMonth(List<RetailTransaction> transactions)
+This private method calculates the total rewards earned for a list of retail transactions within a single month.
+It utilizes the calculateRewards method for individual transaction reward calculation.
+calculateRewards(RetailTransaction t)
+This private method calculates rewards for an individual retail transaction based on predefined reward limits.
+The reward calculation considers the amount spent in a transaction and adjusts it based on the limits.
+Rewards are returned as a double value.
+getTimestampMinusDays(int days)
+This private method calculates a timestamp representing a date and time by subtracting a specified number of days from the current date and time.
+It uses the Java LocalDateTime class for this calculation.
+
+
+Exception is thrown if customer does not exists.
+H2 in-memory database for storing the information.
+Please check doc file provided in the project
+Install H2 db locally and run it . change the db settings in application.properties file.
+Do run the scrip.sql on H2 in memory DB to prepare the test data.
+
+
+Steps to Run a Maven Project in STS
+1. Import Your Maven Project
+1. Launch STS.
+2. Go to the File menu and select Import.
+3. In the Import dialog, expand the Maven folder, and select Existing Maven Projects.
+4. Click Next.
+5. Browse to the root directory of your Maven project, which should contain the pom.xml file.
+6. Select the project directory and click Finish. STS will now import your Maven project.
+2. Build the Project
+1. Once your project is imported, STS will automatically start building it. You can monitor the progress in the Console view at the bottom of the IDE.
+3. Run Your Maven Project
+1. After the build is successful, you can run your Maven project.
+2. In the Project Explorer, right-click on your project and select Run As > Maven Build.
+3. In the "Goals" field, you can specify the Maven goals you want to execute, such as clean install to clean and build the project. Click Run.
+4. STS will execute the specified Maven goals, and you can view the progress and output in the Console view.
+5. If your project is a web application, you can deploy it to a server (e.g., Tomcat) by right-clicking on your project, selecting Run As > Run on Server, and configuring your server.
+4. Access Your Application
+1. Once your application is successfully deployed, you can access it through a web browser. Typically, the URL would be something like http://localhost:8080/your-app-name.
+
