@@ -39,15 +39,15 @@ public class RetailController {
 	 * @return A ResponseEntity containing retail rewards information in JSON
 	 *         format, or an error message with an appropriate HTTP status code.
 	 */
-	@GetMapping(value = "/getRewards/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> getRewardsByCustomerId(@PathVariable("customerId") String customerId) {
+	@GetMapping(value = {"/getRewards/{customerId}","/getRewards/"}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> getRewardsByCustomerId(@PathVariable(name="customerId",required=false) String customerId) {
 		RetailCustomer customer = new RetailCustomer();
 		RetailRewards customerRewards = new RetailRewards();
 		RetailErrorMessages retailErrorMessages = new RetailErrorMessages();
 		;
 		try {
-			if (customerId.isBlank() || customerId == null) {
-				retailErrorMessages.setErrorMessage("Missing Customer Id");
+			if (customerId == null || customerId.isBlank()) {
+				retailErrorMessages.setErrorMessage("Customer Id field is Blank");
 				retailErrorMessages.setErrorCode(RetailConstants.missingId);
 				LOGGER.debug(retailErrorMessages.getErrorMessage());
 				return new ResponseEntity<>(retailErrorMessages, HttpStatus.BAD_REQUEST);
@@ -55,10 +55,10 @@ public class RetailController {
 			LOGGER.debug("CustomerId::{}", customerId);
 			customer = customerRepository.findByCustomerId(customerId);
 			if (customer == null) {
-				retailErrorMessages.setErrorMessage("Unable To Find Customer Id, Please Enter Valid number");
+				retailErrorMessages.setErrorMessage("Unable To Find Customer Id, Please Enter Valid Customer Id");
 				retailErrorMessages.setErrorCode(RetailConstants.customerNotFound);
 				LOGGER.debug(retailErrorMessages.getErrorMessage());
-				return new ResponseEntity<>(customerRewards, HttpStatus.OK);
+				return new ResponseEntity<>(retailErrorMessages, HttpStatus.OK);
 			}
 			customerRewards = rewardsService.calculateCustomerRewards(customerId);
 			return new ResponseEntity<>(customerRewards, HttpStatus.OK);
