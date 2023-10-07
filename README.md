@@ -86,15 +86,15 @@ It uses the Java LocalDateTime class for this calculation.
 • Start the H2 database locally on your machine. You can typically run it as a springboot Java application.
 5. Access H2 Console: <br />
 • Open a web browser and navigate to the H2 database console. The URL may be http://localhost:8082/h2-console/login.jsp . Log in if required by providing password.
-![image](https://github.com/azizabdul0317/RetailRewardsProgram/assets/147212983/59ae2ac1-fb6a-4aab-9573-3c75def017dd)
+![image](https://github.com/azizabdul0317/RetailRewardsProgram/assets/147212983/70ee69e6-63e0-46f6-acdd-6217ef78f145)
 6. Connect to the Database: <br />
 • Use the database connection settings specified in your application property configuration file to connect to the H2 database from the web console.
 7. Run RetailDB.sql Script: <br />
 • Execute the RetailDB.sql script on the H2 in-memory database. This script will create the necessary tables and populate them with test data.
-![image](https://github.com/azizabdul0317/RetailRewardsProgram/assets/147212983/2edc16d3-55d7-4384-8cf3-bfb663d0a246)
+![image](https://github.com/azizabdul0317/RetailRewardsProgram/assets/147212983/ea7bb6d7-e5bb-41ad-920b-a02020752636)
 7. Verify Data: <br />
 • You can now verify that the Customer and Transaction data has been successfully inserted into the H2 in-memory database by running SQL queries within the H2 console.
-![image](https://github.com/azizabdul0317/RetailRewardsProgram/assets/147212983/167c2324-c17d-4289-8652-d8894256d697)
+![image](https://github.com/azizabdul0317/RetailRewardsProgram/assets/147212983/2999452f-c508-4f8f-b0e8-4cc58066de4f)
 9. Integration with the Project: <br />
 • With the H2 database set up and populated, your project should now be able to interact with the data as configured in your application code.
 
@@ -109,7 +109,7 @@ http://localhost:8082/retailCustomers/getRewards/P2800
 click send to get response!
 
 **Expected Output:**
-![image](https://github.com/azizabdul0317/RetailRewardsProgram/assets/147212983/8991a717-0a53-4aec-85be-8306edb124a8)
+![image](https://github.com/azizabdul0317/RetailRewardsProgram/assets/147212983/53588863-7f30-4196-904a-0f8eaff59df5)
 
 **Steps to Check Application Health**
 1. Open Postman: <br />
@@ -124,6 +124,6 @@ click send to get response!
 • Postman will display the response received from the URL. This response will contain information about the health status of your application.
 
 **Expected Output:**
-![image](https://github.com/azizabdul0317/RetailRewardsProgram/assets/147212983/10c4b2c5-4bfa-4a21-bc10-1e87f0a26d33)
+![image](https://github.com/azizabdul0317/RetailRewardsProgram/assets/147212983/d34d7030-0056-4990-b802-5e9fd8d66f85)
 
 
