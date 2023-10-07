@@ -17,7 +17,7 @@ import com.retail.rewards.model.RetailRewards;
 import com.retail.rewards.repository.RetailCustomerRepository;
 import com.retail.rewards.service.RetailService;
 
-public class RetailControllerTests {
+public class RetailControllerTest {
 
 	@InjectMocks
 	private RetailController retailController;
