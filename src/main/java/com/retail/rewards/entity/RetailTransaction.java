@@ -6,15 +6,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * Represents a retail transaction, including transaction details such as
  * transaction ID, customer ID, transaction date, and amount spent.
  */
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "RETAIL_TRANSACTION")
 public class RetailTransaction {

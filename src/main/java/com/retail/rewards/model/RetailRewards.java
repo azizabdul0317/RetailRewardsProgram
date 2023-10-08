@@ -1,13 +1,11 @@
 package com.retail.rewards.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * Represents retail rewards information for a customer.
  */
-@Getter
-@Setter
+@Data
 public class RetailRewards {
     
     /**
@@ -18,22 +16,22 @@ public class RetailRewards {
     /**
      * The rewards earned in the last month.
      */
-    private double lastMonthRewards;
+    private long lastMonthRewards;
     
     /**
      * The rewards earned in the second-to-last month.
      */
-    private double secondLastMonthRewards;
+    private long secondLastMonthRewards;
     
     /**
      * The rewards earned in the third-to-last month.
      */
-    private double thirdLastMonthRewards;
+    private long thirdLastMonthRewards;
     
     /**
      * The total rewards earned by the customer.
      */
-    private double totalRewards;
+    private long totalRewards;
     
     /**
      * An error message, if applicable, describing any issues or errors related to rewards calculation.
