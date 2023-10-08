@@ -51,9 +51,9 @@ public class RetailServiceImpl implements RetailService {
 			LOGGER.error(customerRewards.getErrorMessage().toString());
 			return customerRewards;
 		}
-		Double lastMonthRewards = calculateRewardsPerMonth(lastMonthTransactions);
-		Double SecondLastMonthRewards = calculateRewardsPerMonth(lastSecondMonthTransactions);
-		Double ThirdLastMonthRewards = calculateRewardsPerMonth(lastThirdMonthTransactions);
+		long lastMonthRewards = calculateRewardsPerMonth(lastMonthTransactions);
+		long SecondLastMonthRewards = calculateRewardsPerMonth(lastSecondMonthTransactions);
+		long ThirdLastMonthRewards = calculateRewardsPerMonth(lastThirdMonthTransactions);
 		customerRewards.setCustomerId(customerId);
 		customerRewards.setLastMonthRewards(lastMonthRewards);
 		customerRewards.setSecondLastMonthRewards(SecondLastMonthRewards);
@@ -77,8 +77,8 @@ public class RetailServiceImpl implements RetailService {
 	 *                     calculated.
 	 * @return The total rewards earned for the specified month.
 	 */
-	private double calculateRewardsPerMonth(List<RetailTransaction> transactions) {
-		return transactions.stream().map(this::calculateRewards).mapToDouble(Double::doubleValue).sum();
+	private long calculateRewardsPerMonth(List<RetailTransaction> transactions) {
+		return transactions.stream().map(this::calculateRewards).mapToLong(Long::longValue).sum();
 	}
 
 	/**
@@ -88,8 +88,8 @@ public class RetailServiceImpl implements RetailService {
 	 * @param t The retail transaction for which rewards are calculated.
 	 * @return The rewards earned for the given transaction.
 	 */
-	private double calculateRewards(RetailTransaction t) {
-		double amountSpent = t.getAmountSpent();
+	private long calculateRewards(RetailTransaction t) {
+		long amountSpent = Math.round(t.getAmountSpent());
 
 		if (amountSpent > RetailConstants.secondRewardOverLimit) {
 			return ((amountSpent - RetailConstants.secondRewardOverLimit) * 1)
@@ -97,7 +97,7 @@ public class RetailServiceImpl implements RetailService {
 		} else if (amountSpent > RetailConstants.intialRewardOverLimit) {
 			return amountSpent - RetailConstants.intialRewardOverLimit;
 		} else {
-			return 0.0;
+			return 0;
 		}
 	}
 

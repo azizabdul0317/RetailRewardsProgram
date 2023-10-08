@@ -6,15 +6,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * Represents a retail customer, including customer details such as
  * customer ID and customer name.
  */
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "RETAIL_CUSTOMER")
 public class RetailCustomer {
